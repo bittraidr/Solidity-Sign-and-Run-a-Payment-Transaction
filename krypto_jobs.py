@@ -175,7 +175,7 @@ st.sidebar.write(account.address)
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
 def sidebar():
-    customer_account = get_balance()
+    customer_account = get_balance(account.address)
     st.sidebar.write(customer_account.address)
 
 ##########################################
@@ -226,9 +226,10 @@ st.sidebar.markdown("## Total Wage in Ether")
 # (`candidate_database[person][3]`) and then multiply this hourly rate by
 # the value of the `hours` variable. Save this calculation’s output as a
 # variable named `wage`.
+wage = candidate_database[person][3] * hours
 
 # * Write the `wage` variable to the Streamlit sidebar by
-# using `st.sidebar.write`.
+st.sidebar.write(wage)
 
 # 2. Now that the application can calculate a candidate’s wage, write the code
 # that will allow a customer (you, in this case) to send an Ethereum blockchain
@@ -262,6 +263,7 @@ st.sidebar.markdown("## Total Wage in Ether")
 # the value of the `hours` variable. Save this calculation’s output as a
 # variable named `wage`.
 # * Write the `wage` variable to the Streamlit sidebar by using `st.sidebar.write`.
+st.sidebar.write(wage)
 
 # @TODO
 # Calculate total `wage` for the candidate by multiplying the candidate’s hourly
@@ -296,10 +298,10 @@ if st.sidebar.button("Send Transaction"):
 
     # @TODO
     # Call the `send_transaction` function and pass it 3 parameters:
+   
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
-    # YOUR CODE HERE
-
+    transaction_hash = send_transaction(account, candidate_address, wage)
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
 
