@@ -17,6 +17,7 @@ from web3 import Account
 from web3 import middleware
 from web3.gas_strategies.time_based import medium_gas_price_strategy
 
+
 ################################################################################
 # Wallet functionality
 
@@ -56,10 +57,12 @@ def send_transaction(w3, account, to, wage):
     """Send an authorized transaction to the Ganache blockchain."""
     
     # Set gas price (in Wei)
-    gas_price = w3.toWei(medium_gas_price_strategy(), "gwei")
-    
+    # Set gas price (in Wei)
+    gas_price = w3.to_wei(medium_gas_price_strategy(w3, transaction_params=None), "gwei")
+
+
     # Convert eth amount to Wei
-    value = w3.toWei(wage, "ether")
+    value = w3.to_wei(wage, "ether")
 
     # Calculate gas estimate
     gas_estimate = w3.eth.estimateGas(
