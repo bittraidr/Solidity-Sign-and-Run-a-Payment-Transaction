@@ -21,7 +21,7 @@ from web3.gas_strategies.time_based import medium_gas_price_strategy
 # Wallet functionality
 
 
-def generate_account():
+def generate_account(w3):
     """Create a digital wallet and Ethereum account from a mnemonic seed phrase."""
     # Fetch mnemonic from environment variable.
     mnemonic = os.getenv("MNEMONIC")
@@ -33,7 +33,9 @@ def generate_account():
     private, public = wallet.derive_account("eth")
 
     # Convert private key into an Ethereum account
-    account = Account.privateKeyToAccount(private)
+    # account = Account.privateKeyToAccount(private)
+    account = w3.eth.account.from_key(private)
+
 
     return account
 
