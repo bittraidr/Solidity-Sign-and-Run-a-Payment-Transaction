@@ -80,7 +80,9 @@ w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
 # @TODO:
 # From `crypto_wallet.py import the functions generate_account, get_balance,
 #  and send_transaction
-# YOUR CODE HERE
+from crypto_wallet import generate_account, get_balance, send_transaction
+
+
 
 ################################################################################
 # KryptoJobs2Go Candidate Information
@@ -156,7 +158,7 @@ st.sidebar.markdown("## Client Account Address and Ethernet Balance in Ether")
 
 # @TODO:
 #  Call the `generate_account` function and save it as the variable `account`
-# YOUR CODE HERE
+account = generate_account(w3)
 
 ##########################################
 
@@ -172,7 +174,9 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
-# YOUR CODE HERE
+def sidebar():
+    customer_account = get_balance(account.address)
+    st.sidebar.write(customer_account.address)
 
 ##########################################
 
@@ -223,8 +227,9 @@ st.sidebar.markdown("## Total Wage in Ether")
 # the value of the `hours` variable. Save this calculation’s output as a
 # variable named `wage`.
 
+
 # * Write the `wage` variable to the Streamlit sidebar by
-# using `st.sidebar.write`.
+
 
 # 2. Now that the application can calculate a candidate’s wage, write the code
 # that will allow a customer (you, in this case) to send an Ethereum blockchain
@@ -259,15 +264,16 @@ st.sidebar.markdown("## Total Wage in Ether")
 # variable named `wage`.
 # * Write the `wage` variable to the Streamlit sidebar by using `st.sidebar.write`.
 
+
 # @TODO
 # Calculate total `wage` for the candidate by multiplying the candidate’s hourly
 # rate from the candidate database (`candidate_database[person][3]`) by the
 # value of the `hours` variable
-# YOUR CODE HERE
+wage = candidate_database[person][3] * hours
 
 # @TODO
 # Write the `wage` calculation to the Streamlit sidebar
-# YOUR CODE HERE
+st.sidebar.write(wage)
 
 ##########################################
 # Step 2 - Part 2:
@@ -292,9 +298,12 @@ if st.sidebar.button("Send Transaction"):
 
     # @TODO
     # Call the `send_transaction` function and pass it 3 parameters:
+   
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
-    # YOUR CODE HERE
+    # transaction_hash = send_transaction(w3, account, candidate_address, wage)
+    transaction_hash = send_transaction(w3, account, candidate_address, wage)
+
 
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")

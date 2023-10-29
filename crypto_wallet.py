@@ -58,7 +58,7 @@ def send_transaction(w3, account, to, wage):
     
     # Set gas price (in Wei)
     # Set gas price (in Wei)
-    gas_price = w3.to_wei(medium_gas_price_strategy(w3, transaction_params=None), "gwei")
+    gas_price = w3.to_wei(1, "gwei")
 
 
     # Convert eth amount to Wei
@@ -75,7 +75,7 @@ def send_transaction(w3, account, to, wage):
         "from": account.address,
         "value": value,
         "gas": gas_estimate,
-        "gasPrice": gas_price,  # Set gas price here
+        "gasPrice": gas_price, 
         "nonce": w3.eth.get_transaction_count(account.address),
     }
 
