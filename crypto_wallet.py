@@ -65,7 +65,7 @@ def send_transaction(w3, account, to, wage):
     value = w3.to_wei(wage, "ether")
 
     # Calculate gas estimate
-    gas_estimate = w3.eth.estimateGas(
+    gas_estimate = w3.eth.estimate_gas(
         {"to": to, "from": account.address, "value": value}
     )
 
@@ -76,12 +76,12 @@ def send_transaction(w3, account, to, wage):
         "value": value,
         "gas": gas_estimate,
         "gasPrice": gas_price,  # Set gas price here
-        "nonce": w3.eth.getTransactionCount(account.address),
+        "nonce": w3.eth.get_transaction_count(account.address),
     }
 
     # Sign the raw transaction with Ethereum account
     signed_tx = account.signTransaction(raw_tx)
 
     # Send the signed transaction
-    return w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+    return w3.eth.send_raw_transaction(signed_tx.rawTransaction)
 
