@@ -99,7 +99,7 @@ candidate_database = {
     ],
     "Ash": [
         "Ash",
-        "0x2422858F9C4480c2724A309D58Ffd7Ac8bF65396",
+        "0x13C119f5Bd0b9970118E551Fd8A64064232db93f",
         "5.0",
         0.33,
         "Images/ash.jpeg",

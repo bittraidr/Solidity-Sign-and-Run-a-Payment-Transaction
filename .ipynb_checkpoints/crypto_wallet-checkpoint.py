@@ -29,9 +29,11 @@ def generate_account(w3):
 
     # Create Wallet Object
     wallet = Wallet(mnemonic)
-
+    
+    # index=1
     # Derive Ethereum Private Key
     private, public = wallet.derive_account("eth")
+    
 
     # Convert private key into an Ethereum account
     # account = Account.privateKeyToAccount(private)
@@ -56,7 +58,7 @@ def get_balance(w3, address):
 def send_transaction(w3, account, to, wage):
     """Send an authorized transaction to the Ganache blockchain."""
     
-    # Set gas price (in Wei)
+  
     # Set gas price (in Wei)
     gas_price = w3.to_wei(1, "gwei")
 
@@ -72,7 +74,7 @@ def send_transaction(w3, account, to, wage):
     # Construct a raw transaction
     raw_tx = {
         "to": to,
-        "from": account.address,
+        "from": account.address, 
         "value": value,
         "gas": gas_estimate,
         "gasPrice": gas_price, 
